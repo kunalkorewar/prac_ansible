@@ -1,0 +1,41 @@
+---
+- hosts: mywebservers
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: i want to install webserver on ubuntu node
+      apt:
+        name: "{{myubuntuweb}}"
+        state: present
+      when: ansible_os_family=="Debian"
+
+    - name: i want to start webserver on ubuntu node
+      service:
+        name: "{{myubuntuweb}}"
+        state: started
+      when: ansible_os_family=="Debian"
+
+    - name: i want to install java on ubuntu node
+      apt:
+        name: "{{javaubuntu}}"
+        state: present
+      when: ansible_os_family=="Debian"
+
+    - name: i want to install webserver on redhat node
+      dnf:
+        name: "{{myredhatweb}}"
+        state: present
+      when: ansible_os_family=="RedHat"
+
+    - name: i want to start webserver on redhat node
+      service:
+        name: "{{myredhatweb}}"
+        state: started
+      when: ansible_os_family=="RedHat"
+
+    - name: i want to install java on redhat node
+      dnf:
+        name: "{{javaredhat}}"
+        state: present
+      when: ansible_os_family=="RedHat"
+  

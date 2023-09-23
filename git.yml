@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: ping all nodes
+    ping:
+  - name: i want to install git on ubuntu node
+    apt:
+      name: git
+      state: present
